@@ -1,0 +1,37 @@
+﻿@model PagedList<MyFirstBlog.Models.Article>
+@using Webdiyer.WebControls.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@foreach (var item in Model)
+{
+
+    <table>
+        <tr>
+            @Html.DisplayFor(modelItem => item.Title)
+
+        </tr>
+        <tr style="height:10px;">
+            <td>--------------------------</td>
+        </tr>
+        <tr>
+            <td style="height:200px;width:300px;border:solid">
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+
+        </tr>
+        <tr>
+            <td width="40%">  @Html.DisplayFor(modelItem => item.User.UserName)</td>
+            <td><img src="@item.User.HeadImg" width="50" /></td>
+            <td width="40%">@Html.DisplayFor(modelItem => item.AddDateTime)</td>
+            <td width="20%"> @Html.DisplayFor(modelItem => item.Hit)</td>
+        </tr>
+        <tr>
+            <td height="20"></td>
+        </tr>
+    </table>
+    
+
+}
+@Html.Pager(Model)
